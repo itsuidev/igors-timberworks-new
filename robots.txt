@@ -11,4 +11,4 @@ Allow: /css/
 Allow: /js/
 Allow: /img/
 
-Sitemap: https://itsuidev.github.io/igors-timberworks/sitemap.xml
+Sitemap: https://itsuidev.github.io/igors-timberworks-new/sitemap.xml

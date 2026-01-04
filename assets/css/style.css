@@ -120,11 +120,7 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
 .hero-btn-first:hover:before { transform: translateX(0) skewX(-30deg); }
 .hero-btn-second:hover:before { transform: translateX(-15%) skewX(30deg); }
 
-@keyframes float {
-  0% { transform: translateY(-10px); }
-  50% { transform: translateY(0px); }
-  100% { transform: translateY(-10px); }
-}
+@keyframes float { 0% { transform: translateY(-10px); } 50% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
 #arrow { bottom: 60px; animation: 2s float ease-in-out infinite; }
 .arrow-alt { opacity: 0; }
 
@@ -133,12 +129,7 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
 #discount-button:hover { color: var(--textdark); background: var(--secondary); padding: 1rem 2rem 1rem 1.5rem !important; }
 
 .flash-zoom { animation: flashZoom 0.6s ease-in-out; }
-@keyframes flashZoom {
-  0% { opacity: 1; transform: scale(1); }
-  10% { opacity: 0.5; }
-  20% { opacity: 1; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
-}
+@keyframes flashZoom { 0% { opacity: 1; transform: scale(1); } 10% { opacity: 0.5; } 20% { opacity: 1; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
 
 #about-image { min-height: 500px !important; }
 
@@ -155,8 +146,10 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
 #contact-section { margin-top: 250px; }
 .contact-social:hover { transform: rotateZ(-10deg) scale(0.9); }
 #form-section button:hover { background-color: var(--secondary); }
+#form-section label, #form-section button { text-transform: uppercase; letter-spacing: 2px; font-size: 14px;}
 #google-map { filter: grayscale(1); -webkit-filter: grayscale(1); }
 #google-map:hover { filter: grayscale(0); -webkit-filter: grayscale(0); }
+.google-map-popup { opacity: 0; }
 #add-review-btn:hover { background-color: var(--secondary); color: var(--textdark); }
 
 #author-section { background-image: url("../img/author-background.jpg"); background-size: cover; background-repeat: no-repeat; }
