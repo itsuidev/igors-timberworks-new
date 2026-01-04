@@ -74,7 +74,7 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
 
 #overlay { transition: opacity 1.6s linear; }
 @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-#overlay.fade-out { animation: fadeOut 1.6s forwards; }
+#overlay.fade-out { animation: fadeOut 2s forwards; animation-delay: .2s ;}
 
 .main-nav-alt { background: var(--scrollbar) !important; margin-top: 0px !important; }
 .nav-logo { width: 100px; }
@@ -147,6 +147,10 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
 .contact-social:hover { transform: rotateZ(-10deg) scale(0.9); }
 #form-section button:hover { background-color: var(--secondary); }
 #form-section label, #form-section button { text-transform: uppercase; letter-spacing: 2px; font-size: 14px;}
+#form-section input::selection, #form-section textarea::selection {
+  background-color: #C29C6C;
+  color: white; 
+}
 #google-map { filter: grayscale(1); -webkit-filter: grayscale(1); }
 #google-map:hover { filter: grayscale(0); -webkit-filter: grayscale(0); }
 .google-map-popup { opacity: 0; }

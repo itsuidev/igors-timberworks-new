@@ -1,6 +1,6 @@
 window.onload = () => {
   window.scrollTo(0, 0);
-}
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   RunUniversalPageCode();
@@ -45,7 +45,7 @@ const RunUniversalPageCode = () => {
   buttonTop.addEventListener('click', () => {
     window.scrollTo(0, 0);
   });
-}
+};
 
 const products = [
   {name: "Sapphire Dining Table", price: 3850, category: "luxury", img: "assets/img/tables/luxury/sapphire-table.jpg", description: "Table only, handcrafted epoxy top"},
@@ -93,23 +93,20 @@ const RunIndexPageCode = () => {
 
   let index = 0;
   setInterval(() => {
-    index = (index + 2) % products.length;
-
     const nextIndex = (index + 1) % products.length;
 
     slideshowImg1.src = products[index].img;
     slideshowImg2.src = products[nextIndex].img;
 
-    slideshowImg1.classList.remove('flash-zoom');
-    void slideshowImg1.offsetWidth;
-    slideshowImg1.classList.add('flash-zoom');
+    [slideshowImg1, slideshowImg2].forEach(img => {
+      img.classList.remove('flash-zoom');
+      void img.offsetWidth;
+      img.classList.add('flash-zoom');
+    });
 
-    slideshowImg2.classList.remove('flash-zoom');
-    void slideshowImg2.offsetWidth;
-    slideshowImg2.classList.add('flash-zoom');
-
+    index = (index + 2) % products.length;
   }, 7000);
-}
+};
 
 const catalogueContent = document.getElementById("catalogue-content");
 
@@ -132,7 +129,7 @@ const RenderProducts = (productsArray) => {
     `;
     catalogueContent.appendChild(div);
   });
-}
+};
 
 const RunProductsPageCode = () => {
   RenderProducts(products);
@@ -178,129 +175,137 @@ const RunProductsPageCode = () => {
       item.classList.add("open-panel");
     });
   });
-}
+};
+
+const firstLastNameRegex = /^[A-ZČĆŠĐŽ][a-zčćšđž]+(?:\s[A-ZČĆŠĐŽ][a-zčćšđž]+)*$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const messageRegex = /^[a-zA-Z0-9 .,!?()'"-]*$/;
 
 const ShowError = (errorType, inputField, inputLabel, fieldName, length) => {
-  if (!inputField) {
-    console.error("Prosledjeno polje nije definisano.")
-    return;
+  if (inputField) {
+    inputField.style.border = '2px solid red';
   }
 
-  if (!inputLabel) {
-    console.error("Prosledjen label nije definisan.")
-    return;
+  let errorMessage = '';
+  switch(errorType) {
+    case 'regex-fail':
+      errorMessage = '* Wrong format!';
+      break;
+    case 'no-input':
+      errorMessage = '* Can\'t be empty!';
+      break;
+    case 'min-length':
+      errorMessage = `* Minimum ${length} characters!`;
+      break;
+    case 'radio-select':
+      errorMessage = `* Please select one!`
+      break;
+    default:
+      errorMessage = '* Invalid input!';
   }
-  
-  inputField.style.border = '2px solid red';
 
-  if (errorType === 'regex-fail') {
-    inputLabel.innerHTML = `${fieldName} <span style="color:red;">* Wrong format!</span>`;
+  if(inputLabel) {
+    inputLabel.innerHTML = `${fieldName} <span style="color:red;">${errorMessage}</span>`;
   }
-  else if (errorType === 'no-input') {
-    inputLabel.innerHTML = `${fieldName} <span style="color:red;">* Can't be empty!</span>`;
-  }
-  else if (errorType === 'max-length') {
-    inputLabel.innerHTML = `${fieldName} <span style="color:red;">* Maximum ${length} characters!</span>`;
-  }
-  else if (errorType === 'min-length') {
-    inputLabel.innerHTML = `${fieldName} <span style="color:red;">* Minimum ${length} characters!</span>`;
-  }
-}
+};
 
 const ClearError = (inputField, inputLabel, fieldName) => {
-  if (!inputField || !inputLabel) return;
-
-  inputField.style.border = '';
-  inputLabel.innerHTML = fieldName;
-}
+  if (inputField) inputField.style.border = '';
+  if (inputLabel) inputLabel.innerHTML = fieldName;
+};
 
 const ValidateRegex = (regexPattern, testString) => {
   return regexPattern.test(testString);
-}
+};
 
-const ValidateRadioGroup = (name, inputField, labelElement, fieldName) => {
+const ValidateField = (input) => {
+  if (!input) return true;
+
+  const label = document.getElementById(input.id + 'Label');
+  let fieldName = '';
+  let regex = null;
+
+  if(input.dataset.validate === 'email') {
+    fieldName = 'Email';
+    regex = emailRegex;
+  } 
+  else if(input.dataset.validate === 'firstName') {
+    fieldName = 'First name';
+    regex = firstLastNameRegex;
+  } 
+  else if(input.dataset.validate === 'lastName') {
+    fieldName = 'Last name';
+    regex = firstLastNameRegex;
+  } 
+  else if(input.dataset.validate === 'message') {
+    fieldName = 'Message';
+    regex = messageRegex;
+  } 
+  else return true; 
+
+  const value = input.value.trim();
+  ClearError(input, label, fieldName);
+
+  if(value === '') {
+    ShowError('no-input', input, label, fieldName);
+    return false;
+  }
+  if(regex && !ValidateRegex(regex, value)) {
+    ShowError('regex-fail', input, label, fieldName);
+    return false;
+  }
+  if(fieldName === 'Message' && value.length < 20) {
+    ShowError('min-length', input, label, fieldName, 20);
+    return false;
+  }
+
+  return true;
+};
+
+const ValidateRadioGroup = (name, labelElement, fieldName) => {
   const selected = document.querySelector(`input[name="${name}"]:checked`);
 
   if (!selected) {
-    ShowError('no-input', inputField, labelElement, fieldName, 0); 
-    labelElement.innerHTML = `${fieldName} <span style="color:red;">* Please select one!</span>`;
+    ShowError('radio-select', null, labelElement, fieldName);
     return false;
   }
 
   ClearError(null, labelElement, fieldName);
   return true;
-}
+};
 
-const ValidateFormInput = () => {
+const ValidateFormSubmit = () => {
   let validity = true;
 
-  const firstLastNameRegex = /^[A-ZČĆŠĐŽ][a-zčćšđž]+(?:\s[A-ZČĆŠĐŽ][a-zčćšđž]+)*$/;
-  const firstName = document.getElementById('firstName');
-  const firstNameLabel = document.getElementById('firstNameLabel');
-  const firstNameValue = firstName ? firstName.value : '';
-  ClearError(firstName, firstNameLabel, 'First name');
-  if (firstNameValue === '') {
-    ShowError('no-input', firstName, firstNameLabel, 'First name');
-    validity = false;
-  } else if (!ValidateRegex(firstLastNameRegex, firstNameValue)) {
-    ShowError('regex-fail', firstName, firstNameLabel, 'First name');
-    validity = false;
-  }
-  
-  const lastName = document.getElementById('lastName');
-  const lastNameLabel = document.getElementById('lastNameLabel');
-  const lastNameValue = lastName ? lastName.value : '';
-  ClearError(lastName, lastNameLabel, 'Last name');
-  if(lastNameValue === '')  {
-    ShowError('no-input', lastName, lastNameLabel, 'Last name');
-    validity = false;
-  } else if (!ValidateRegex(firstLastNameRegex, lastNameValue)) {
-    ShowError('regex-fail', lastName, lastNameLabel, 'Last name');
-    validity = false;
-  }
+  const inputs = ['firstName', 'lastName', 'email', 'message'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if(!ValidateField(el)) validity = false;
+  });
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const email = document.getElementById('email');
-  const emailLabel = document.getElementById('emailLabel');
-  const emailValue = email ? email.value : '';
-  ClearError(email, emailLabel, 'Email');
-  if(emailValue === '') {
-    ShowError('no-input', email, emailLabel, 'Email');
-    validity = false;
-  } else if (!ValidateRegex(emailRegex, emailValue)) {
-    ShowError('regex-fail', email, emailLabel, 'Email');
-    validity = false;
-  }
-  
-  const message = document.getElementById('message');
-  const messageLabel = document.getElementById('messageLabel');
-  const messageValue = message ? message.value : '';
-  ClearError(message, messageLabel, 'Message:');
-  if (messageValue.length < 20) {
-    ShowError('min-length', message, messageLabel, 'Message:', 20);
-    validity = false;
-  } else if (messageValue.length > 300) {
-    ShowError('max-length', message, messageLabel, 'Message:', 300);
-    validity = false;
-  }
-
-  const questionType = document.querySelector('input[name="question"]:checked'); 
   const questionLabel = document.getElementById('questionLabel');
-  ClearError(questionType, questionLabel, 'Question type:')
-  if (!ValidateRadioGroup("question", questionType, questionLabel, "Question type:")) {
-    validity = false;
-  }
+  if (!ValidateRadioGroup("question", questionLabel, "Question type:")) validity = false;
 
   return validity;
-}
+};
 
 const RunContactPageCode = () => {
-
   const form = document.getElementById('contact-form');
   if (!form) return;
+  
+  document.querySelectorAll('input[data-validate], textarea[data-validate]').forEach(el => {
+    el.addEventListener('input', () => ValidateField(el));
+  });
+
+  document.querySelectorAll('input[name="question"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const label = document.getElementById('questionLabel');
+      ValidateRadioGroup('question', label, 'Question type:');
+    });
+  });
 
   form.addEventListener('submit', (e) => {
-    if (!ValidateFormInput()) {
+    if (!ValidateFormSubmit()) {
       e.preventDefault();
       return false;
     }
@@ -369,4 +374,4 @@ const RunContactPageCode = () => {
     textInput.value = "";
     ratingInput.value = "1";
   });
-}
+};
