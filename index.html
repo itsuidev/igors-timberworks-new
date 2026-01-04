@@ -9,7 +9,7 @@
     <meta name="og:image" content="https://itsuidev.github.io/igors-timberworks/assets/img/timberworks-logo.png"/>
     <link rel="icon" type="image/png" href="favicon.png"/>
     <meta name="robots" content="index, follow"/>    
-    <link rel="canonical" href="https://itsuidev.github.io/igors-timberworks/index.html"/>
+    <link rel="canonical" href="https://itsuidev.github.io/igors-timberworks-new/index.html"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-icon.png"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -20,51 +20,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css"/>
 </head>
 <body data-page="index">
-    <div id="overlay" class="position-fixed h-100 w-100"></div>
-    <button id="btn-top" class="custom-small-box position-fixed custom-transition"><span class="bi bi-arrow-up"></span></button>
-    <a href="website.zip" target="_blank" id="downloadsite" class="d-block px-2 py-1 text-light position-fixed custom-transition"><span class="bi bi-download me-1"></span></a>
-    <a href="documentation.pdf" target="_blank" id="documentation" class="d-block px-2 py-1 text-light position-fixed custom-transition"><span class="bi bi-file-earmark-pdf-fill me-1"></span></a>
+    <div id="overlay" class="position-fixed top-0 pe-none h-100 w-100 z-3 color-background-dark"></div>
+    <button id="btn-top" class="custom-small-box position-fixed z-2 custom-transition"><span class="bi bi-arrow-up"></span></button>
+    <a href="website.zip" target="_blank" id="downloadsite" class="d-block px-2 py-1 text-light position-fixed z-2 custom-transition"><span class="bi bi-download me-1"></span></a>
+    <a href="documentation.pdf" target="_blank" id="documentation" class="d-block px-2 py-1 z-2 text-light position-fixed custom-transition"><span class="bi bi-file-earmark-pdf-fill me-1"></span></a>
 
-    <nav id="main-nav" class="navbar navbar-expand-lg fixed-top mt-5 navbar-dark">
+    <nav id="main-nav" class="navbar navbar-expand-lg navbar-dark fixed-top mt-5 z-2 custom-transition">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto d-flex align-items-center fs-6">
+                <ul class="navbar-nav mx-auto d-flex align-items-center fs-6 gap-5">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
+                        <a class="nav-link custom-transition active" aria-current="page" href="index.html">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="products.html">PRODUCTS</a>
+                        <a class="nav-link custom-transition" aria-current="page" href="products.html">PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand m-0" href="index.html">
                             <img alt="timberworks-logo" src="assets/img/timberworks-logo.png" class="img-fluid nav-logo custom-transition"/>
                         </a>
                     </li>   
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">CONTACT</a>
+                        <a class="nav-link custom-transition" href="contact.html">CONTACT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="author.html">AUTHOR</a>
+                        <a class="nav-link custom-transition" href="author.html">AUTHOR</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="container-fluid d-flex align-items-center justify-content-center" id="hero-section">
-        <div id="hero-background"></div>
-        <div id="hero-content" class="d-flex flex-column justify-content-center align-items-center text-center">
-            <header id="hero-header" class="container-fluid">
+    <section id="hero-section" class="container-fluid d-flex align-items-center justify-content-center ">
+        <div id="hero-background" class="position-absolute custom-rounded-big custom-transition"></div>
+        <div class="position-relative h-100 w-100 d-flex flex-column justify-content-center align-items-center text-center overflow-hidden">
+            <header class="container-fluid">
                 <div class="row">
-                    <h1 class="fw-bold col-12">
-                        TIMBER<span id="h1-span">WORKS</span>
-                        <span id="h1-sub" class="d-block text-uppercase text-light fw-normal mt-2 select">
+                    <h1 class="fw-bold fs-1 col-12 color-text-primary custom-letter-spacing-big">
+                        TIMBER<span class="d-inline-block text-color-light">WORKS</span>
+                        <span class="d-block text-uppercase text-light fw-normal mt-2 custom-select fs-6 custom-letter-spacing-small">
                         THE FINEST LUXURY CARPENTRY SHOP
                         </span>
                     </h1>
@@ -79,7 +78,7 @@
                 ABOUT US
                 </button>
             </div>
-            <div id="arrow" class="mt-4 custom-transition">
+            <div id="arrow" class="position-absolute fs-3 custom-transition">
                 <i class="bi bi-arrow-down"></i>
             </div>
         </div>
@@ -87,14 +86,14 @@
 
     <section id="discount-section" class="container-fluid d-flex align-items-center justify-content-center text-light position-relative">
         <div class="row align-items-center justify-content-center gap-5 w-100">
-            <div id="discount-side" class="position-absolute h-100"></div>
+            <div id="discount-side" class="position-absolute h-100 t-0 end-0 color-background-secondary"></div>
             <div id="discount-main" class="col-12 col-xl-4 mb-4 mb-md-0 d-flex flex-column">
                 <p class="fw-bold text-uppercase">
                     <span class="bi bi-star"></span> DAILY DEAL <span class="bi bi-star"></span>
                 </p>
                 <h2 class="fw-bold text-uppercase mb-4">Luxury oak dining room set</h2>
 
-                <div id="discount-content" class="rounded p-3 text-uppercase w-100">
+                <div id="discount-content" class="rounded p-3 text-uppercase w-100 color-background-secondary">
                     <p class="m-0">This set includes:</p>
                     <p class="m-0">- 4x wooden chairs</p>
                     <p class="m-0">- 1x large wooden table</p>
@@ -124,15 +123,15 @@
     <div id="featured-anchor" class="separator"></div>
     <section id="featured-section" class="container-fluid">
         <div class="row">
-            <h3 class="mt-5 text-center mb-3 fw-bold custom-h3">OUR PRODUCTS</h3>
+            <h3 class="mt-5 text-center mb-3 fw-bold custom-h3">PRODUCTS</h3>
             <div class="line mx-auto mb-5"></div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="custom-small-box col-md-2 col-sm-1 rounded me-2 d-none d-md-block"></div>
-            <p id="featured-subtext" class="fs-5 col-lg-7 col-sm-12 custom-text-justify px-4">
-                Here at the finest luxury carpentry shop we proudly present a curated selection of our <span>finest carpentry</span> creations, crafted from <span>premium-grade</span>, <span>sustainably sourced</span> wood. Each piece reflects superior workmanship, durability, and timeless design.  
-                To explore our full furniture collection, please visit our <a href="products.html">products page</a>.  
-                For custom requests or additional details, visit the <a href="contact.html">contact page</a>.
+            <p id="featured-subtext" class="fs-5 col-lg-7 col-sm-12 custom-text-justify custom-select px-4">
+                Here at the finest luxury carpentry shop we proudly present a curated selection of our <span class="custom-select">finest carpentry</span> creations, crafted from <span class="custom-select">premium-grade</span>, <span>sustainably sourced</span> wood. Each piece reflects superior workmanship, durability, and timeless design.  
+                To explore our full furniture collection, please visit our <a class="custom-select" href="products.html">products page</a>.  
+                For custom requests or additional details, visit the <a class="custom-select" href="contact.html">contact page</a>.
             </p>
         <div class="row d-flex justify-content-center mt-5">
             <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center mb-5">
@@ -143,7 +142,7 @@
             </div>
         </div>
        <div class="row">
-            <h3 class="mt-5 text-center mb-3 fw-bold custom-h3">GETTING YOUR ORDER</h3>
+            <h3 class="mt-5 text-center mb-3 fw-bold custom-h3">ORDERS</h3>
             <div class="line mx-auto mb-5"></div>
         </div>
 
@@ -155,8 +154,8 @@
                     <h4 class="fw-bold m-0">Delivery & Processing</h4>
                 </div>
                 
-                <p class="fs-5 mt-3 custom-text-justify">
-                    Once your order is placed, it enters our streamlined production and fulfillment process. Standard orders are carefully inspected, packed, and prepared for dispatch within <span>3–7 business days</span>, depending on product complexity and availability.  
+                <p class="fs-5 mt-3 custom-text-justify custom-select">
+                    Once your order is placed, it enters our streamlined production and fulfillment process. Standard orders are carefully inspected, packed, and prepared for dispatch within <span class="custom-select">3–7 business days</span>, depending on product complexity and availability.  
                     Custom-built furniture may require additional crafting time, ensuring every detail meets our high standards.  
                     Our logistics partners guarantee safe, insured, and timely delivery, with real-time tracking provided upon shipment.
                 </p>
@@ -165,9 +164,9 @@
                     <h4 class="fw-bold m-0">Installation & Support</h4>
                 </div>
                 
-                <p class="fs-5 mt-3 custom-text-justify">
-                    Select products include <span>optional professional installation</span> by certified technicians. After delivery, our support team remains available for any guidance regarding setup, maintenance, or product care.  
-                    We stand behind our craftsmanship by offering a <span>product warranty</span> on eligible items, along with long-term customer assistance to ensure full satisfaction and longevity of your purchase.
+                <p class="fs-5 mt-3 custom-text-justify custom-select">
+                    Select products include <span class="custom-select">optional professional installation</span> by certified technicians. After delivery, our support team remains available for any guidance regarding setup, maintenance, or product care.  
+                    We stand behind our craftsmanship by offering a <span class="custom-select">product warranty</span> on eligible items, along with long-term customer assistance to ensure full satisfaction and longevity of your purchase.
                 </p>
             </div>
         </div>
@@ -178,8 +177,8 @@
             <div id="about-info" class="col-lg-5 col-md-12 col-sm-12 mb-5 mb-lg-0">
                 <h3 class="mb-3 fw-bold custom-h3">ABOUT US</h3>
                 <div class="line"></div>
-                <p id="about-text" class="text-justify fs-5 mb-3">
-                    Welcome to <span>Timberworks</span>, where craftsmanship meets <span>luxury</span>. We specialize in creating brand new high-quality, <span>custom wooden tables</span> and chairs that bring elegance and durability to your home or workspace. Every piece is handcrafted with precision, using only the finest materials to ensure lasting beauty. Our passion lies in transforming wood into timeless art, blending modern designs with traditional techniques.
+                <p class="custom-text-justify fs-5 mb-3 custom-select">
+                    Welcome to <span class="custom-select color-text-primary">Timberworks</span>, where craftsmanship meets <span class="custom-select color-text-primary">luxury</span>. We specialize in creating brand new high-quality, <span class="custom-select color-text-primary">custom wooden tables</span> and chairs that bring elegance and durability to your home or workspace. Every piece is handcrafted with precision, using only the finest materials to ensure lasting beauty. Our passion lies in transforming wood into timeless art, blending modern designs with traditional techniques.
                 </p>
 
                 <div id="benefit-wrap" class="d-flex justify-content-between text-center mt-5">

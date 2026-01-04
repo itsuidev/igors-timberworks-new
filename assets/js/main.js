@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   else if (page === 'products') RunProductsPageCode();
   else if (page === 'contact') RunContactPageCode();
   else if (page === 'author');
+  else if (page === 'message');
   else console.error(`Stranica sa imenom '${page}' ne postoji. Proveriti vrednost data-page atributa.`);
 });
 
