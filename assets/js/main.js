@@ -48,14 +48,17 @@ const RunUniversalPageCode = () => {
 }
 
 const products = [
-  {name: "Sapphire Dining Table", price: 2800, category: "luxury", img: "assets/img/tables/luxury/sapphire-table.jpg", description: "Table only, handcrafted epoxy top"},
+  {name: "Sapphire Dining Table", price: 3850, category: "luxury", img: "assets/img/tables/luxury/sapphire-table.jpg", description: "Table only, handcrafted epoxy top"},
   {name: "Prestige Console Table", price: 2000, category: "luxury", img: "assets/img/tables/luxury/prestige-console.jpg", description: "Perfect for hallway or living room"},
   {name: "Rustic Farmhouse Table", price: 1100, category: "kitchen", img: "assets/img/tables/kitchen/rustic-farmhouse.jpg", description: "Handcrafted from reclaimed wood"},
   {name: "Nordic Coffee Table", price: 480, category: "living-room", img: "assets/img/tables/living-room/nordic-coffee.jpg", description: "Scandinavian minimalist style"},
+  {name: "Ebony Full Table", price: 1500, category: "living-room", img: "assets/img/tables/living-room/ebony-table.jpg", description: "Ebony table only with epoxy top"},
   {name: "Maple Epoxy Desk", price: 2100, category: "luxury", img: "assets/img/tables/kitchen/maple-table.jpg", description: "Stylish workspace with epoxy top"},
   {name: "Cedar Dining Set", price: 650, category: "sets", img: "assets/img/tables/sets/cedar-set.jpg", description: "Cedar wood dining table with 2 chairs"},
   {name: "Luxury Oak Dining Table", price: 3350, category: "luxury", img: "assets/img/tables/luxury/luxury-oak.jpg", description: "Seats 8, handcrafted with oak and epoxy"},
   {name: "Venus Side Table", price: 650, category: "living-room", img: "assets/img/tables/living-room/venus-side.jpg", description: "Elegant side table for any modern interior"},
+  {name: "Oak Dining Set", price: 3800, category: "sets", img: "assets/img/tables/sets/oak-set.jpg", description: "Oak wood table with 6 leather chairs"},
+  {name: "Sublime Oak Table", price: 1800, category: "kitchen", img: "assets/img/tables/kitchen/sublime-oak.jpg", description: "Elegant kitchen dining table"}
 ];
 
 const RunIndexPageCode = () => {
@@ -199,6 +202,9 @@ const ShowError = (errorType, inputField, inputLabel, fieldName, length) => {
   else if (errorType === 'max-length') {
     inputLabel.innerHTML = `${fieldName} <span style="color:red;">* Maximum ${length} characters!</span>`;
   }
+  else if (errorType === 'min-length') {
+    inputLabel.innerHTML = `${fieldName} <span style="color:red;">* Minimum ${length} characters!</span>`;
+  }
 }
 
 const ClearError = (inputField, inputLabel, fieldName) => {
@@ -270,8 +276,11 @@ const ValidateFormInput = () => {
   const messageLabel = document.getElementById('messageLabel');
   const messageValue = message ? message.value : '';
   ClearError(message, messageLabel, 'Message:');
-  if (messageValue.length > 300) {
-    ShowError('max-length', message, messageLabel, 'Message:', 300)
+  if (messageValue.length < 20) {
+    ShowError('min-length', message, messageLabel, 'Message:', 20);
+    validity = false;
+  } else if (messageValue.length > 300) {
+    ShowError('max-length', message, messageLabel, 'Message:', 300);
     validity = false;
   }
 
