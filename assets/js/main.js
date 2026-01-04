@@ -1,3 +1,7 @@
+window.onload = () => {
+  window.scrollTo(0, 0);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   RunUniversalPageCode();
 
