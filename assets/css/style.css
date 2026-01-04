@@ -157,7 +157,7 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
 .contact-btn:hover span { color: var(--textdark) !important; }
 
 .footer-line { width: 95%; height: 3px; }
-.footer-active { color: var(--secondary); }
+.footer-active { color: var(--secondary) !important; }
 .footer-list li a:hover { color: var(--primary); margin-left: 10px; }
 .footer-list .active a { color: var(--primary); }
 .social-icons a span:hover { color: var(--primary); }
