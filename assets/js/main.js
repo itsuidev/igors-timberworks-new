@@ -35,13 +35,24 @@ const RunUniversalPageCode = () => {
     mainNav.classList.toggle('main-nav-alt', window.scrollY > 0);
   });
 
-  const buttonTop = document.getElementById('btn-top');
+  const buttonTop = document.getElementById('top-btn');
   if(!buttonTop) return;
 
   buttonTop.addEventListener('click', () => {
     window.scrollTo(0, 0);
   });
 }
+
+const products = [
+  {name: "Sapphire Dining Table", price: 2800, category: "luxury", img: "assets/img/tables/luxury/sapphire-table.jpg", description: "Table only, handcrafted epoxy top"},
+  {name: "Prestige Console Table", price: 2000, category: "luxury", img: "assets/img/tables/luxury/prestige-console.jpg", description: "Perfect for hallway or living room"},
+  {name: "Rustic Farmhouse Table", price: 1100, category: "kitchen", img: "assets/img/tables/kitchen/rustic-farmhouse.jpg", description: "Handcrafted from reclaimed wood"},
+  {name: "Nordic Coffee Table", price: 480, category: "living-room", img: "assets/img/tables/living-room/nordic-coffee.jpg", description: "Scandinavian minimalist style"},
+  {name: "Maple Epoxy Desk", price: 2100, category: "luxury", img: "assets/img/tables/kitchen/maple-table.jpg", description: "Stylish workspace with epoxy top"},
+  {name: "Cedar Dining Set", price: 650, category: "sets", img: "assets/img/tables/sets/cedar-set.jpg", description: "Cedar wood dining table with 2 chairs"},
+  {name: "Luxury Oak Dining Table", price: 3350, category: "luxury", img: "assets/img/tables/luxury/luxury-oak.jpg", description: "Seats 8, handcrafted with oak and epoxy"},
+  {name: "Venus Side Table", price: 650, category: "living-room", img: "assets/img/tables/living-room/venus-side.jpg", description: "Elegant side table for any modern interior"},
+];
 
 const RunIndexPageCode = () => {
   const hero = document.getElementById('hero-background');
@@ -69,25 +80,18 @@ const RunIndexPageCode = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   });
 
-  const images = [
-    'assets/img/tables/luxury/luxury-oak.png', 
-    'assets/img/tables/luxury/sapphire-table.png', 
-    'assets/img/tables/luxury/prestige-console.png', 
-    'assets/img/tables/kitchen/maple-table.png', 
-    'assets/img/tables/living-room/venus-side.png'
-  ];
   const slideshowImg1 = document.querySelector('#carousel-first');
   const slideshowImg2 = document.querySelector('#carousel-second');
   if (!slideshowImg1 || !slideshowImg2) return;
 
   let index = 0;
   setInterval(() => {
-    index = (index + 2) % images.length;
+    index = (index + 2) % products.length;
 
-    const nextIndex = (index + 1) % images.length;
+    const nextIndex = (index + 1) % products.length;
 
-    slideshowImg1.src = images[index];
-    slideshowImg2.src = images[nextIndex];
+    slideshowImg1.src = products[index].img;
+    slideshowImg2.src = products[nextIndex].img;
 
     slideshowImg1.classList.remove('flash-zoom');
     void slideshowImg1.offsetWidth;
@@ -102,32 +106,19 @@ const RunIndexPageCode = () => {
 
 const catalogueContent = document.getElementById("catalogue-content");
 
-
-const products = [
-  {name: "Sapphire Dining Table", price: 2800, category: "luxury", img: "assets/img/tables/luxury/sapphire-table.png", description: "Table only, handcrafted epoxy top"},
-  {name: "Prestige Console Table", price: 2000, category: "luxury", img: "assets/img/tables/luxury/prestige-console.png", description: "Perfect for hallway or living room"},
-  {name: "Rustic Farmhouse Table", price: 1100, category: "kitchen", img: "assets/img/tables/kitchen/rustic-farmhouse.png", description: "Handcrafted from reclaimed wood"},
-  {name: "Nordic Coffee Table", price: 480, category: "living-room", img: "assets/img/tables/living-room/nordic-coffee.png", description: "Scandinavian minimalist style"},
-  {name: "Maple Epoxy Desk", price: 2100, category: "luxury", img: "assets/img/tables/kitchen/maple-table.png", description: "Stylish workspace with epoxy top"},
-  {name: "Cedar Dining Set", price: 650, category: "sets", img: "assets/img/tables/sets/cedar-set.png", description: "Cedar wood dining table with 2 chairs"},
-  {name: "Luxury Oak Dining Table", price: 3350, category: "luxury", img: "assets/img/tables/luxury/luxury-oak.png", description: "Seats 8, handcrafted with oak and epoxy"},
-  {name: "Venus Side Table", price: 650, category: "living-room", img: "assets/img/tables/living-room/venus-side.png", description: "Elegant side table for any modern interior"},
-];
-
-
 const RenderProducts = (productsArray) => {
   catalogueContent.innerHTML = "";
   productsArray.forEach(p => {
     const div = document.createElement("div");
     div.className = "col-12 col-sm-12 col-lg-4 col-md-6 mb-4";
     div.innerHTML = `
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-sm color-background-primary">
         <img src="${p.img}" class="card-img-top img-fluid h-100" alt="${p.name}">
         <div class="card-body d-flex flex-column">
-          <h6 class="card-title text-uppercase">${p.name}</h6>
+          <h6 class="card-title text-uppercase color-text-secondary">${p.name}</h6>
           <p class="card-text text-truncate">${p.description}</p>
           <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="fw-bold btn btn-sm">$${p.price}</span>
+            <span class="fw-bold btn btn-sm color-foreground-primary">$${p.price}</span>
           </div>
         </div>
       </div>
