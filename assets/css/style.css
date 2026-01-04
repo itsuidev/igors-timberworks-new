@@ -175,7 +175,7 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
   .navbar { background-color: rgba(15, 15, 15) !important; margin-top: 0 !important; }
   .navbar-nav { gap: 25px; }
   .nav-item { margin-bottom: 10px; }
-  .nav-item:nth-child(3) { display: none !important; }
+  .nav-item:nth-child(4) { display: none !important; }
   #exclusive-section { padding: 80px 0px 0px 0px !important; }
   #exclusive-details { margin-top: 10px !important; }
 }
@@ -190,7 +190,6 @@ body { background-color: var(--textdark); scroll-behavior: smooth; }
   #discount-section { padding: 50px 0px !important; }
   #discount-main { align-items: center; text-align: center; }
   #discount-button { margin-bottom: 15px; }
-  #discount-image { background-color: transparent; padding: 15px !important; }
   #about-section { padding: 50px 0px !important; text-align: center; }
   #about-image { min-height: 0 !important; }
   #about-info { margin-bottom: 0 !important; }
